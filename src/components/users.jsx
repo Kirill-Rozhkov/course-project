@@ -34,7 +34,7 @@ const Users = () => {
         return users.map(person => (
             <tr key={person}>
                 <td key={person}>{person.name}</td>
-                <td key={person}>{person.qualities}</td>
+                <td key={person}>{createUserQualities(users)}</td>
                 <td key={person}>{person.profession}</td>
                 <td key={person}></td>
                 <td key={person}><button className='btn btn-danger'>Delete</button></td>
