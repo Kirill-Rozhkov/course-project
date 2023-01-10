@@ -1,46 +1,13 @@
 import React, {useState} from 'react'
 import api from '../api'
+import renderUserList from './renderUserList'
+import renderPhrase from './renderPhrase'
+import renderTypes from './renderTypes'
+import handleDelete from './handleDelete'
 
 const Users = () => {
     const [users, setUsers] = useState(api.users.fetchAll())
-    const handleDelete = (userId) => {
 
-    }
-
-    const renderPhrase = (number) => {
-        return <span className='badge text-bg-primary m-2'>{number} человек тусанёт с тобой сегодня</span>
-    }
-
-    const renderTypes = () => {
-        const  types = ['Имя', 'качества', 'Профессия', 'Встретился, раз', 'Оценка']
-        return types.map(type => (
-                <th key={type} scope="col">{type}</th>
-        ))
-    }
-
-    const createUserList = (user) => {
-        const createUserQualities = (people) => {
-            return people.map(person => (
-                <li
-                key={person}
-                className={`badge bg-${users.forEach(el => {
-                    return el.filter(element => el.qualities) 
-                })}`}
-                >
-
-                </li>
-            ))
-        }
-        return users.map(person => (
-            <tr key={person}>
-                <td key={person}>{person.name}</td>
-                <td key={person}>{createUserQualities(users)}</td>
-                <td key={person}>{person.profession}</td>
-                <td key={person}></td>
-                <td key={person}><button className='btn btn-danger'>Delete</button></td>
-            </tr>
-        ))
-    }
 
     return (
         <>
@@ -52,7 +19,7 @@ const Users = () => {
         </tr>
     </thead>
         <tbody>
-            {createUserList(users)}
+            {renderUserList(users)}
         </tbody>
     </table>
         </>
