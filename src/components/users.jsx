@@ -5,19 +5,19 @@ const Users = () => {
     const [users, setUsers] = useState(api.users.fetchAll())
     
     const handleDelete = (userId) => {
-        setUsers(prevState => prevState.filter(user => user !== userId))
+        setUsers(prevState => prevState.filter(user => user._id !== userId._id))
     }
 
     const renderPhrase = () => {
         if (users.length > 0) {
-        return <span className='badge text-bg-primary m-2'>{users.length} человек тусанёт с тобой сегодня</span>
+            return <span className='badge text-bg-primary m-2 '><h2>{users.length} человек тусанёт с тобой сегодня</h2></span>
         } else {
-            <span className='badge text-bg-danger m-2'>Никто с тобой не тусанёт</span>
+            return <span className='badge text-bg-danger m-2'><h2>Никто с тобой не тусанёт</h2></span>
         }
     }
 
     const renderTypes = () => {
-        const  types = ['Имя', 'качества', 'Профессия', 'Встретился, раз', 'Оценка']
+        const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка']
     
         return types.map(type => (
                 <th key={type} scope="col">{type}</th>
@@ -26,33 +26,36 @@ const Users = () => {
 
     const renderUserList = () => {
         return users.map(person => (
-            <>
             <tr key={person._id}>
-                <td>{person.name}</td>
-                <td>{createUserQualities(person)}</td>
-                <td>{person.profession}</td>
-                <td>{person.completedMeetings}</td>
-                <td>{person.rate}</td>
+                <td>
+                    {person.name}
+                </td>
+                <td>
+                    {renderQualities(person)}
+                </td>
+                <td>
+                    {person.profession.name}
+                </td>
+                <td>
+                    {person.completedMeetings}
+                </td>
+                <td>
+                    {person.rate}
+                </td>
                 <td><button
                  className='btn btn-danger' 
-                 onClick={handleDelete}
+                 onClick={() => handleDelete(person)}
                  >
                     Delete
                 </button></td>
             </tr>
-            </>
         ))
-    }
+    } 
 
-    const createUserQualities = (people) => {
-        return people.map(person => (
-            <li
-            key={person}
-            className={`badge bg-${people.qualities}`}
-            >
-
-            </li>
-        ))
+    const renderQualities = (person) => {
+        return person.qualities.map(qualities => ((
+                <li key={qualities._id} className={`badge bg-${qualities.color} m-2`}>{qualities.name}</li>
+        )))
     }
 
     return (
