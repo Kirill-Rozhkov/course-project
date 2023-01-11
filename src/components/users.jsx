@@ -5,11 +5,15 @@ const Users = () => {
     const [users, setUsers] = useState(api.users.fetchAll())
     
     const handleDelete = (userId) => {
-        setUsers(users.filter(user => user == userId))
+        setUsers(prevState => prevState.filter(user => user !== userId))
     }
 
     const renderPhrase = (number) => {
+        if (number > 0) {
         return <span className='badge text-bg-primary m-2'>{number} человек тусанёт с тобой сегодня</span>
+        } else {
+            <span className='badge text-bg-danger m-2'>Никто с тобой не тусанёт</span>
+        }
     }
 
     const renderTypes = () => {
@@ -25,16 +29,14 @@ const Users = () => {
             return people.map(person => (
                 <li
                 key={person}
-                className={`badge bg-${users.forEach(el => {
-                    return el.filter(element => el.qualities) 
-                })}`}
+                className={`badge bg-${people.qualities}`}
                 >
 
                 </li>
             ))
         }
 
-        return users.map(person => (
+        const list = users.map(person => (
             <tr key={person._id}>
                 <td>{person.name}</td>
                 <td>{createUserQualities(users)}</td>
@@ -48,6 +50,7 @@ const Users = () => {
                 </button></td>
             </tr>
         ))
+            console.log(list)
     }
 
     return (
@@ -61,7 +64,7 @@ const Users = () => {
                 </tr>
             </thead>
             <tbody>
-                {renderUserList(users)}
+                {renderUserList()}
             </tbody>
         </table>
         </>
