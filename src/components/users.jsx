@@ -8,9 +8,9 @@ const Users = () => {
         setUsers(prevState => prevState.filter(user => user !== userId))
     }
 
-    const renderPhrase = (number) => {
-        if (number > 0) {
-        return <span className='badge text-bg-primary m-2'>{number} человек тусанёт с тобой сегодня</span>
+    const renderPhrase = () => {
+        if (users.length > 0) {
+        return <span className='badge text-bg-primary m-2'>{users.length} человек тусанёт с тобой сегодня</span>
         } else {
             <span className='badge text-bg-danger m-2'>Никто с тобой не тусанёт</span>
         }
@@ -24,18 +24,7 @@ const Users = () => {
         ))
     }
 
-    const renderUserList = (user) => {
-        const createUserQualities = (people) => {
-            return people.map(person => (
-                <li
-                key={person}
-                className={`badge bg-${people.qualities}`}
-                >
-
-                </li>
-            ))
-        }
-
+    const renderUserList = () => {
         return users.map(person => (
             <>
             <tr key={person._id}>
@@ -52,6 +41,17 @@ const Users = () => {
                 </button></td>
             </tr>
             </>
+        ))
+    }
+
+    const createUserQualities = (people) => {
+        return people.map(person => (
+            <li
+            key={person}
+            className={`badge bg-${people.qualities}`}
+            >
+
+            </li>
         ))
     }
 
