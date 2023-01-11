@@ -36,12 +36,14 @@ const Users = () => {
             ))
         }
 
-        const list = users.map(person => (
+        return users.map(person => (
+            <>
             <tr key={person._id}>
                 <td>{person.name}</td>
-                <td>{createUserQualities(users)}</td>
+                <td>{createUserQualities(person)}</td>
                 <td>{person.profession}</td>
-                <td></td>
+                <td>{person.completedMeetings}</td>
+                <td>{person.rate}</td>
                 <td><button
                  className='btn btn-danger' 
                  onClick={handleDelete}
@@ -49,8 +51,8 @@ const Users = () => {
                     Delete
                 </button></td>
             </tr>
+            </>
         ))
-            console.log(list)
     }
 
     return (
