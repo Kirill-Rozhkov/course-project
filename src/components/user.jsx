@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
-import api from '../api'
 import Qualitie from './qualitie'
+import BookMark from './bookmark'
 
 const User = (props) => {
     
-    const handleDelete = (userId) => {
-        setUsers(prevState => prevState.filter(user => user._id !== userId._id))
-    }
+
 
     const renderTypes = () => {
         const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка']

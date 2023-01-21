@@ -1,17 +1,10 @@
 import React, {useState} from 'react'
-import api from '../api'
 import User from './user'
-import SearchStatus from './searchStatus'
 
-const Users = () => {
-    const [users, setUsers] = useState(api.users.fetchAll())
-
+const Users = (props) => {
     return (
         <>
-        <SearchStatus 
-            length={users.length}
-        />
-
+        {renderPhrase(users.length)}
         <table class="table">
             <thead>
                 <tr>
