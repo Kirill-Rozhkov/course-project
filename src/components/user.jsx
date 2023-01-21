@@ -3,6 +3,8 @@ import Qualitie from './qualitie'
 import BookMark from './bookmark'
 
 const User = (props) => {
+    const {name} = props
+    const {_id} = props
     const renderTypes = () => {
         const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка']
     
@@ -18,7 +20,9 @@ const User = (props) => {
                 </td>
                 <td>
                     {<Qualitie 
-                        
+                       name={name}
+                       _id={_id} 
+                       color={person.qualities.color}
                     />}
                 </td>
                 <td>

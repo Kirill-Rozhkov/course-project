@@ -21,6 +21,9 @@ function App() {
                 {users.map(user => {
                     <Users 
                         onDelete={handleDelete}
+                        name={user.name}
+                        id={user._id}
+                        color={user.color}
                     />
                 })}
             </div>
