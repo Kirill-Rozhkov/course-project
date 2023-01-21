@@ -9,8 +9,22 @@ function App() {
     const handleDelete = (userId) => {
         setUsers(prevState => prevState.filter(user => user._id !== userId._id))
     }
+    const handleToggleBookMark = (id) => {
+
+    }
     return (
-        <div></div>
+        <>
+            <SearchStatus 
+                lenght={users.length}
+            />
+            <div>
+                {users.map(user => {
+                    <Users 
+                        onDelete={handleDelete}
+                    />
+                })}
+            </div>
+        </>
     )
 }
 

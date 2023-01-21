@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const BookMark = () => {
+const BookMark = ({ status, ...rest }) => {
 
 }
 

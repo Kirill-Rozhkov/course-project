@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import User from './user'
 
-const Users = (props) => {
+const Users = ({ users, ...rest }) => {
     return (
         <>
         {renderPhrase(users.length)}

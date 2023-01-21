@@ -3,9 +3,6 @@ import Qualitie from './qualitie'
 import BookMark from './bookmark'
 
 const User = (props) => {
-    
-
-
     const renderTypes = () => {
         const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка']
     
@@ -14,7 +11,6 @@ const User = (props) => {
         ))
     }
     
-    const renderUserList = () => {
         return props.map(person => (
             <tr key={person._id}>
                 <td>
@@ -22,7 +18,7 @@ const User = (props) => {
                 </td>
                 <td>
                     {<Qualitie 
-                        user={person}
+                        
                     />}
                 </td>
                 <td>
@@ -42,7 +38,6 @@ const User = (props) => {
                 </button></td>
             </tr>
         ))
-    } 
-}
+} 
 
 export default User
