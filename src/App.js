@@ -6,6 +6,13 @@ import api from "./api"
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll())
 
+    const renderTypes = () => {
+        const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка']
+        return types.map(type => (
+                <th key={type} scope="col">{type}</th>
+        ))
+    }
+    
     const handleDelete = (userId) => {
         setUsers(prevState => prevState.filter(user => user._id !== userId._id))
     }
@@ -17,16 +24,22 @@ function App() {
             <SearchStatus 
                 lenght={users.length}
             />
-            <div>
-                {users.map(user => {
-                    <Users 
-                        onDelete={handleDelete}
-                        name={user.name}
-                        id={user._id}
-                        color={user.color}
-                    />
-                })}
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        {renderTypes()}
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map(user => {
+                        <Users 
+                            users={...user}
+                            color={user.qualities.color}
+                            onDelete={handleDelete}
+                        />
+                    })}
+                </tbody>
+            </table>
         </>
     )
 }

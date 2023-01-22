@@ -4,17 +4,17 @@ import User from './user'
 const Users = ({ users, ...rest }) => {
     return (
         <>
-        {renderPhrase(users.length)}
-        <table class="table">
-            <thead>
-                <tr>
-                    {renderTypes()}
-                </tr>
-            </thead>
-            <tbody>
-                {renderUserList()}
-            </tbody>
-        </table>
+            <User 
+                user={...users}
+                color={rest.color}
+            />
+            <td>
+                <button
+                    onClick={rest.onDelete()}
+                >
+                    Delete
+                </button>
+            </td>
         </>
     )
 } 

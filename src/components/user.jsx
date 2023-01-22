@@ -5,13 +5,6 @@ import BookMark from './bookmark'
 const User = (props) => {
     const {name} = props
     const {_id} = props
-    const renderTypes = () => {
-        const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка']
-    
-        return types.map(type => (
-                <th key={type} scope="col">{type}</th>
-        ))
-    }
     
         return props.map(person => (
             <tr key={person._id}>
