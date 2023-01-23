@@ -22,7 +22,7 @@ function App() {
     return (
         <>
             <SearchStatus 
-                lenght={users.length}
+                size={users.length}
             />
             <table class="table">
                 <thead>
@@ -31,13 +31,9 @@ function App() {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(user => {
-                        <Users 
-                            users={...user}
-                            color={user.qualities.color}
-                            onDelete={handleDelete}
-                        />
-                    })}
+                    <Users 
+                        users={users}
+                    />
                 </tbody>
             </table>
         </>

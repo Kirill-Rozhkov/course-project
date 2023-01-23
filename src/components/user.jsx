@@ -3,38 +3,39 @@ import Qualitie from './qualitie'
 import BookMark from './bookmark'
 
 const User = (props) => {
-    const {name} = props
-    const {_id} = props
+    console.log(props)
+    const {name} = props.name
+    const {_id} = props._id
     
-        return props.map(person => (
-            <tr key={person._id}>
+        return (
+            <tr key={_id}>
                 <td>
-                    {person.name}
+                    {name}
                 </td>
                 <td>
                     {<Qualitie 
                        name={name}
                        _id={_id} 
-                       color={person.qualities.color}
+                       color={props.qualities.color}
                     />}
                 </td>
                 <td>
-                    {person.profession.name}
+                    {props.profession.name}
                 </td>
                 <td>
-                    {person.completedMeetings}
+                    {props.completedMeetings}
                 </td>
                 <td>
-                    {person.rate}
+                    {props.rate}
                 </td>
                 <td><button
                     className='btn btn-danger' 
-                    onClick={() => handleDelete(person)}
+                    // onClick={() => props.onDelete(props)}
                 >
                     Delete
                 </button></td>
             </tr>
-        ))
+        )
 } 
 
 export default User

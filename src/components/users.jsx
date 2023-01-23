@@ -3,19 +3,15 @@ import User from './user'
 
 const Users = ({ users, ...rest }) => {
     return (
-        <>
-            <User 
-                user={...users}
-                color={rest.color}
+    <>
+        {users.map(user => {
+            // {console.log(user)}
+            <User
+                user={user}
+                // onDelete={handleDelete}
             />
-            <td>
-                <button
-                    onClick={rest.onDelete()}
-                >
-                    Delete
-                </button>
-            </td>
-        </>
+        })}
+    </>
     )
 } 
 
