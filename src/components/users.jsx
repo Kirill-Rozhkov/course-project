@@ -2,14 +2,17 @@ import React, {useState} from 'react'
 import User from './user'
 
 const Users = ({ users, ...rest }) => {
+    // console.log(rest)
     return (
     <>
         {users.map(user => {
             // {console.log(user)}
-            <User
-                user={user}
-                // onDelete={handleDelete}
-            />
+            return (
+                <User
+                    user={user}
+                    onDelete={rest}
+                />
+            )
         })}
     </>
     )

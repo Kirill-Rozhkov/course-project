@@ -1,7 +1,11 @@
 import React from 'react'
 
-const Qualitie = ({ color, name, _id }) => {
-        return <li key={_id} className={`badge bg-${color} m-2`}>{name}</li>
+const Qualitie = ({ person }) => {
+        return person.qualities.map(q => {
+                return (
+                        <li key={q._id} className={`badge bg-${q.color} m-2`}>{q.name}</li>
+                )
+        })
 }
 
 export default Qualitie
