@@ -5,7 +5,7 @@ import api from "./api"
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll())
-    const [status, setStatus] = useState()
+    const [status, setStatus] = useState([])
 
     const renderTypes = () => {
         const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка', 'Избранное']
@@ -23,7 +23,7 @@ function App() {
         // } else {
             
         // }
-        setStatus(id)
+        setStatus({id})
         console.log(status)
     }
     return (
