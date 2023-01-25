@@ -15,18 +15,16 @@ function App() {
     }
     
     const handleDelete = (userId) => {
-        console.log(userId)
         setUsers(prevState => prevState.filter(user => user._id !== userId._id))
     }
     const handleToggleBookMark = (id) => {
-        // setStatus({key: id})
-        // if () {
-        //     console.log(1)
-        //     console.log(status)
-        //     setStatus({id})
-        // } else {
+        // if (!status) {
 
+        // } else {
+            
         // }
+        setStatus(id)
+        console.log(status)
     }
     return (
         <>
