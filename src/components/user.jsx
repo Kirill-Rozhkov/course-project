@@ -25,7 +25,11 @@ const User = (props) => {
                     {props.user.rate}
                 </td>
                 <td>
-                    
+                    <BookMark 
+                        id={props.user._id}
+                        onHandleMark={props.onHandleMark}
+                        status={props.status}
+                    />
                 </td>
                 <td>
                     <button

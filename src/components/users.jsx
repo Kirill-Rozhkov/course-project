@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import User from './user'
 
-const Users = ({ users, ...rest }) => {
+const Users = ({ users, onDelete, onHandleMark, status  }) => {
     // console.log(rest)
     return (
     <>
@@ -10,7 +10,9 @@ const Users = ({ users, ...rest }) => {
             return (
                 <User
                     user={user}
-                    onDelete={rest}
+                    onDelete={onDelete}
+                    onHandleMark={onHandleMark}
+                    status={status}
                 />
             )
         })}
