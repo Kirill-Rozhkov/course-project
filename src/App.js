@@ -5,7 +5,7 @@ import api from "./api"
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll())
-    const [status, setStatus] = useState([])
+    // console.log(users)
 
     const renderTypes = () => {
         const  types = ['Имя', 'Качества', 'Профессия', 'Встретился, раз', 'Оценка', 'Избранное']
@@ -18,13 +18,15 @@ function App() {
         setUsers(prevState => prevState.filter(user => user._id !== userId._id))
     }
     const handleToggleBookMark = (id) => {
-        // if (!status) {
-
-        // } else {
-            
-        // }
-        setStatus({id})
-        console.log(status)
+        const updateBookmark = users.map(user => {
+            if (user._id == id._id) {
+                return {user.bookmark == !user.bookmark}
+            } else {
+                return user
+            }
+        })
+        setUsers(updateBookmark)
+        console.log(updateBookmark)
     }
     return (
         <>
@@ -42,7 +44,7 @@ function App() {
                         users={users}
                         onDelete={handleDelete}
                         onHandleMark={handleToggleBookMark}
-                        status={status}
+                        status={users.bookmark}
                     />
                 </tbody>
             </table>
