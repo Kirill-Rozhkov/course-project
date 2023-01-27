@@ -20,7 +20,8 @@ function App() {
     const handleToggleBookMark = (id) => {
         const updateBookmark = users.map(user => {
             if (user._id == id._id) {
-                return {user.bookmark == !user.bookmark}
+                console.log(user.bookmark)
+                return ({...user}, user.bookmark == !user.bookmark)
             } else {
                 return user
             }
