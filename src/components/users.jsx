@@ -36,18 +36,10 @@ const Users = ({ users, onDelete, onHandleMark }) => {
         </>
     )
 }
-User.propTypes = {
-    user: PropTypes.object.isRequired,
+Users.propTypes = {
+    users: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onHandleMark: PropTypes.func.isRequired,
-    status: PropTypes.bool.isRequired,
-    key: PropTypes.number.isRequired
-}
-Pagination.propTypes = {
-    itemsCount: PropTypes.number.isRequired,
-    pageSize: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    currentPage: PropTypes.number.isRequired
+    onHandleMark: PropTypes.func.isRequired
 }
 
 export default Users

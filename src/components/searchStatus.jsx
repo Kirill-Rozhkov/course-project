@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const SearchStatus = (props) => {
     if (props.size > 0) {
@@ -14,6 +15,9 @@ const SearchStatus = (props) => {
             </span>
         )
     }
+}
+SearchStatus.propTypes = {
+    size: PropTypes.number.isRequired
 }
 
 export default SearchStatus

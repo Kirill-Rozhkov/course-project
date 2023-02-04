@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const Qualitie = ({ person }) => {
     return person.qualities.map((q) => {
@@ -8,6 +9,11 @@ const Qualitie = ({ person }) => {
             </li>
         )
     })
+}
+Qualitie.propTypes = {
+    person: PropTypes.object.isRequired,
+    _id: PropTypes.string.isRequired,
+    color: PropTypes.array.isRequired
 }
 
 export default Qualitie

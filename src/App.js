@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import Users from "./components/users"
 import SearchStatus from "./components/searchStatus"
 import api from "./api"
-import PropTypes from "prop-types"
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll())
@@ -53,21 +52,11 @@ function App() {
                         users={users}
                         onDelete={handleDelete}
                         onHandleMark={handleToggleBookMark}
-                        status={users.bookmark}
                     />
                 </tbody>
             </table>
         </>
     )
-}
-Users.propTypes = {
-    users: PropTypes.array.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onHandleMark: PropTypes.func.isRequired,
-    status: PropTypes.array.isRequired
-}
-SearchStatus.propTypes = {
-    size: PropTypes.number.isRequired
 }
 
 export default App

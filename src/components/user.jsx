@@ -35,13 +35,9 @@ const User = (props) => {
         </tr>
     )
 }
-Qualitie.propTypes = {
-    person: PropTypes.array.isRequired,
-    _id: PropTypes.number.isRequired,
-    color: PropTypes.array.isRequired
-}
-BookMark.propTypes = {
-    id: PropTypes.number.isRequired,
+User.propTypes = {
+    user: PropTypes.object.isRequired,
+    onDelete: PropTypes.func.isRequired,
     onHandleMark: PropTypes.func.isRequired,
     status: PropTypes.bool.isRequired
 }
