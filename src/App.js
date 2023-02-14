@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import Users from "./components/users"
-import SearchStatus from "./components/searchStatus"
 import api from "./api"
 
 function App() {
@@ -42,19 +41,12 @@ function App() {
     }
     return (
         <>
-            <SearchStatus size={users.length} />
-            <table className="table">
-                <thead>
-                    <tr>{renderTypes()}</tr>
-                </thead>
-                <tbody>
-                    <Users
-                        users={users}
-                        onDelete={handleDelete}
-                        onHandleMark={handleToggleBookMark}
-                    />
-                </tbody>
-            </table>
+            <Users
+                users={users}
+                onDelete={handleDelete}
+                onHandleMark={handleToggleBookMark}
+                renderTypes={renderTypes}
+            />
         </>
     )
 }

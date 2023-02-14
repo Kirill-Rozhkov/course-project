@@ -3,31 +3,27 @@ import Qualitie from "./qualitie"
 import BookMark from "./bookmark"
 import PropTypes from "prop-types"
 
-const User = (props) => {
+const User = ({ user, onDelete, onHandleMark }) => {
     return (
-        <tr key={props.user._id}>
-            <td>{props.user.name}</td>
+        <tr key={user._id}>
+            <td>{user.name}</td>
             <td>
-                <Qualitie
-                    person={props.user}
-                    _id={props.user._id}
-                    color={props.user.qualities}
-                />
+                <Qualitie person={user} _id={user._id} color={user.qualities} />
             </td>
-            <td>{props.user.profession.name}</td>
-            <td>{props.user.completedMeetings}</td>
-            <td>{props.user.rate}</td>
+            <td>{user.profession.name}</td>
+            <td>{user.completedMeetings}</td>
+            <td>{user.rate}</td>
             <td>
                 <BookMark
-                    id={props.user._id}
-                    onHandleMark={props.onHandleMark}
-                    status={props.status}
+                    id={user._id}
+                    onHandleMark={onHandleMark}
+                    status={user.bookmark}
                 />
             </td>
             <td>
                 <button
                     className="btn btn-danger"
-                    onClick={() => props.onDelete(props.user)}
+                    onClick={() => onDelete(user)}
                 >
                     Delete
                 </button>
@@ -38,8 +34,7 @@ const User = (props) => {
 User.propTypes = {
     user: PropTypes.object.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onHandleMark: PropTypes.func.isRequired,
-    status: PropTypes.bool.isRequired
+    onHandleMark: PropTypes.func.isRequired
 }
 
 export default User

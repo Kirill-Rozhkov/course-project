@@ -2,18 +2,16 @@ import React from "react"
 import PropTypes from "prop-types"
 
 const Qualitie = ({ person }) => {
-    return person.qualities.map((q) => {
+    return person.qualities.map((qualitie) => {
         return (
-            <li key={q._id} className={`badge bg-${q.color} m-2`}>
-                {q.name}
+            <li key={qualitie._id} className={`badge bg-${qualitie.color} m-2`}>
+                {qualitie.name}
             </li>
         )
     })
 }
 Qualitie.propTypes = {
-    person: PropTypes.object.isRequired,
-    _id: PropTypes.string.isRequired,
-    color: PropTypes.array.isRequired
+    person: PropTypes.object.isRequired
 }
 
 export default Qualitie
