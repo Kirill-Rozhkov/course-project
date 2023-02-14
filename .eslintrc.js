@@ -13,7 +13,7 @@ module.exports = {
     rules: {
         indent: ["warn", 4],
         semi: [2, "never"],
-        "space-before-function-paren": ["warn", "never"],
+        "space-before-function-paren": [0, "never"],
         quotes: [0, "single", { avoidEscape: true }],
         "eol-last": 0,
         "no-multiple-empty-lines": ["error", "never"],
