@@ -143,7 +143,6 @@ const users = [
         bookmark: false
     }
 ]
-console.log(typeof professions)
 
 const fetchAll = () =>
     new Promise((resolve) => {
