@@ -16,7 +16,7 @@ module.exports = {
         "space-before-function-paren": [0, "never"],
         quotes: [0, "single", { avoidEscape: true }],
         "eol-last": 0,
-        "no-multiple-empty-lines": ["error", "never"],
+        "no-multiple-empty-lines": ["warn", { max: 2 }],
         "no-unused-vars": "warn"
     }
 }

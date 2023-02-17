@@ -3,12 +3,12 @@ import Users from "./components/users"
 import api from "./api"
 
 function App() {
-    const [users, setUsers] = useState()
+    const [users, setUsers] = useState([])
     useEffect(() => {
-        api.users.fetchAll().then((data) => setUsers(data))
+        api.users.fetchAll().then((data) => {
+            setUsers(data)
+        })
     }, [])
-
-    console.log(users)
 
     const renderTypes = () => {
         const types = [

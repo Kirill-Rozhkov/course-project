@@ -25,6 +25,7 @@ const Users = ({ users, onDelete, onHandleMark, renderTypes }) => {
     }
 
     const handleProfessionSelect = (item) => {
+        console.log(item)
         setSelectedProf(item)
     }
 
