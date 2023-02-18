@@ -8,10 +8,7 @@ const GroupList = ({
     onItemSelect,
     selectedItem
 }) => {
-    // Нужно реализовать код, который определяет объект это или массив
-    // Если это объект, то нужно оставить то же самое
-    // Если массив, то нужно брать items и создавать map почти такой же
-    if (Array.isArray(items) || (typeof items === "object" && items !== null)) {
+    if (!Array.isArray(items)) {
         return (
             <ul className="list-group">
                 {Object.keys(items).map((item) => (
@@ -25,6 +22,26 @@ const GroupList = ({
                         role="button"
                     >
                         {items[item][contentProperty]}
+                        {console.log(items[item])}
+                    </li>
+                ))}
+            </ul>
+        )
+    } else {
+        return (
+            <ul className="list-group">
+                {items.map((item) => (
+                    <li
+                        key={item[valueProperty]}
+                        className={
+                            "list-group-item" +
+                            (item === selectedItem ? " active" : "")
+                        }
+                        onClick={() => onItemSelect(item)}
+                        role="button"
+                    >
+                        {console.log(item)}
+                        {item[contentProperty]}
                     </li>
                 ))}
             </ul>

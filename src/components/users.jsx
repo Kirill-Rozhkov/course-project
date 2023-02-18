@@ -12,6 +12,7 @@ const Users = ({ users, onDelete, onHandleMark, renderTypes }) => {
     const [professions, setProfessions] = useState()
     const [selectedProf, setSelectedProf] = useState()
 
+    console.log(selectedProf)
     const pageSize = 4
     useEffect(() => {
         api.professions.fetchAll().then((data) => setProfessions(data))
@@ -29,9 +30,11 @@ const Users = ({ users, onDelete, onHandleMark, renderTypes }) => {
         setSelectedProf(item)
     }
 
+    // Проблема здесь
     const filteredUsers = selectedProf
         ? users.filter((user) => user.profession === selectedProf)
         : users
+    console.log(filteredUsers)
     const count = filteredUsers.length
     const userCrop = paginate(filteredUsers, currentPage, pageSize)
     const clearFilter = () => {
