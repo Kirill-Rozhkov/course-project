@@ -22,7 +22,6 @@ const GroupList = ({
                         role="button"
                     >
                         {items[item][contentProperty]}
-                        {console.log(items[item])}
                     </li>
                 ))}
             </ul>
@@ -40,7 +39,7 @@ const GroupList = ({
                         onClick={() => onItemSelect(item)}
                         role="button"
                     >
-                        {console.log(item)}
+                        {/* {console.log(item)} */}
                         {item[contentProperty]}
                     </li>
                 ))}
@@ -49,7 +48,7 @@ const GroupList = ({
     }
 }
 GroupList.defaultProps = {
-    valueProperty: "id",
+    valueProperty: "_id",
     contentProperty: "name"
 }
 GroupList.propTypes = {

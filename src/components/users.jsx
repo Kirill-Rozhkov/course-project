@@ -26,13 +26,12 @@ const Users = ({ users, onDelete, onHandleMark, renderTypes }) => {
     }
 
     const handleProfessionSelect = (item) => {
-        console.log(item)
         setSelectedProf(item)
     }
 
     // Проблема здесь
     const filteredUsers = selectedProf
-        ? users.filter((user) => user.profession === selectedProf)
+        ? users.filter((user) => user.profession._id === selectedProf._id)
         : users
     console.log(filteredUsers)
     const count = filteredUsers.length
