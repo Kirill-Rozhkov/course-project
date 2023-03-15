@@ -36,8 +36,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                                               selectedSort.order === "asc"
                                                   ? "up"
                                                   : "down"
-                                          }
-                                          -fill`
+                                          }-fill`
                                         : undefined
                                 }
                             ></i>

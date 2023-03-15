@@ -1,0 +1,28 @@
+import React from "react"
+import { useHistory } from "react-router-dom"
+import API from "../api"
+
+const User = (user, qualitie) => {
+    const history = useHistory()
+    const showAllUsers = () => {
+        history.push("/users")
+    }
+    const userId = API.users.getById(user._id).then((data) => {
+        return data
+    })
+    console.log(userId)
+    return (
+        <>
+            <div>
+                <h1>{user.name}</h1>
+                <h2>Профессия: {user.profession}</h2>
+                <button>{qualitie}</button>
+                <p>{user.completedMeetings}</p>
+                <h1>{user.completedMeetings}</h1>
+                <button onClick={() => showAllUsers()}>Все пользователи</button>
+            </div>
+        </>
+    )
+}
+
+export default User

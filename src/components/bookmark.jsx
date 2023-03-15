@@ -5,9 +5,9 @@ const BookMark = ({ id, onHandleMark, status }) => {
     return (
         <i
             className={
-                !status
-                    ? "btn bi-bookmark btn-secondary"
-                    : "btn bi-bookmark-star-fill btn-warning"
+                status
+                    ? "btn bi-bookmark-star-fill btn-warning"
+                    : "btn bi-bookmark btn-secondary"
             }
             id={id}
             onClick={() => onHandleMark(id)}
