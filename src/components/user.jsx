@@ -1,38 +1,45 @@
-import React from "react"
-import { useHistory } from "react-router-dom"
-// import API from "../api"
+import React, { useState, useEffect } from "react"
+import { useHistory, useParams } from "react-router-dom"
+import api from "../api"
 import PropTypes from "prop-types"
+import QualitiesList from "./qualitiesList"
 
-const User = ({ user, qualitie }) => {
+const User = ({ users }) => {
+    const [user, setUser] = useState()
+    const id = useParams()
+    const { userId } = id
+    useEffect(() => {
+        api.users.getById(userId).then((data) => {
+            setUser(data)
+        })
+    }, [])
+    console.log(user)
     const history = useHistory()
     const showAllUsers = () => {
         history.push("/users")
     }
-    // const userId = API.users.getById(user._id).then((data) => {
-    //     return data
-    // })
     // console.log(userId)
     return (
         <>
-            {console.log(qualitie)}
-            {/* {userId ? ( */}
-            <div>
-                <h1>{user.name}</h1>
-                <h2>Профессия: {user.profession}</h2>
-                <button>{qualitie}</button>
-                <p>{user.completedMeetings}</p>
-                <h1>{user.completedMeetings}</h1>
-                <button onClick={() => showAllUsers()}>Все пользователи</button>
-            </div>
-            {/* ) : (
+            {user ? (
+                <div>
+                    <h1>{user.name}</h1>
+                    <h2>Профессия: {user.profession.name}</h2>
+                    <>{<QualitiesList user={user} />}</>
+                    <p>{user.completedMeetings}</p>
+                    <h1>Rate: {user.rate}</h1>
+                    <button onClick={() => showAllUsers()}>
+                        Все пользователи
+                    </button>
+                </div>
+            ) : (
                 <h1>Loading...</h1>
-            )} */}
+            )}
         </>
     )
 }
 User.propTypes = {
-    user: PropTypes.object,
-    qualitie: PropTypes.array
+    users: PropTypes.array
 }
 
 export default User
