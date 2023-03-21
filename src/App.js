@@ -9,22 +9,13 @@ import User from "./components/user"
 import api from "./api"
 
 function App() {
-    const [users, setUsers] = useState()
-    useEffect(() => {
-        api.users.fetchAll().then((data) => {
-            setUsers(data)
-        })
-    }, [])
     return (
         <>
             <NavBar />
             <Switch>
                 <Route path="/" exact component={MainPage} />
                 <Route path="/login" component={Login} />
-                <Route
-                    path="/users/:userId"
-                    render={() => <User users={users} />}
-                />
+                <Route path="/users/:userId" render={() => <User />} />
                 <Route path="/users" component={Users} />
                 <Route path="/404" component={NotFound} />
                 <Redirect to="/404" />

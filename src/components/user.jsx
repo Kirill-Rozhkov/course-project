@@ -4,7 +4,7 @@ import api from "../api"
 import PropTypes from "prop-types"
 import QualitiesList from "./qualitiesList"
 
-const User = ({ users }) => {
+const User = () => {
     const [user, setUser] = useState()
     const id = useParams()
     const { userId } = id
@@ -18,7 +18,6 @@ const User = ({ users }) => {
     const showAllUsers = () => {
         history.push("/users")
     }
-    // console.log(userId)
     return (
         <>
             {user ? (
