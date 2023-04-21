@@ -6,6 +6,8 @@ import api from "../../api"
 import SearchStatus from "../searchStatus"
 import UserTabel from "../usersTable"
 import _ from "lodash"
+import Search from "../search"
+import { searchFilter } from "../../utils/searchFilter"
 
 const Users = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -13,7 +15,12 @@ const Users = () => {
     const [selectedProf, setSelectedProf] = useState()
     const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" })
     const pageSize = 4
+    const [text, setText] = useState("")
     const [users, setUsers] = useState([])
+    // const foundUser = users.find((user) => user.name === text)
+    // console.log(foundUser)
+    // console.log(users)
+    // foundUser && setUsers(foundUser)
     useEffect(() => {
         api.users.fetchAll().then((data) => {
             setUsers(data)
@@ -56,6 +63,15 @@ const Users = () => {
         setSelectedProf(item)
     }
 
+    useEffect(() => {
+        const foundUser = searchFilter(users, text)
+        foundUser && setUsers(foundUser)
+    }, [text])
+
+    const handleChange = (event) => {
+        setText(event.target.value)
+    }
+
     if (users) {
         const filteredUsers = selectedProf
             ? users.filter((user) => user.profession._id === selectedProf._id)
@@ -88,13 +104,16 @@ const Users = () => {
                 <div className="d-flex flex-column">
                     <SearchStatus size={count} />
                     {count > 0 && (
-                        <UserTabel
-                            users={userCrop}
-                            onDelete={handleDelete}
-                            onHandleMark={handleToggleBookMark}
-                            onSort={handelSort}
-                            selectedSort={sortBy}
-                        />
+                        <>
+                            <Search handleChange={handleChange} text={text} />
+                            <UserTabel
+                                users={userCrop}
+                                onDelete={handleDelete}
+                                onHandleMark={handleToggleBookMark}
+                                onSort={handelSort}
+                                selectedSort={sortBy}
+                            />
+                        </>
                     )}
                     <div className="d-flex justify-content-center">
                         <Pagination

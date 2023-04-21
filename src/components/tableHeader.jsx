@@ -29,6 +29,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         >
                             {columns[column].name}
                             <i
+                                key={column}
                                 className={
                                     columns[column].path &&
                                     columns[column].path === selectedSort.path
