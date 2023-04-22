@@ -1,8 +1,7 @@
 export function searchFilter(users, text) {
-    return users.find(
-        (user) => console.log(user.name.spice(0, text.length)) === text
+    console.log(text)
+    return users.filter(
+        (user) =>
+            user.name.slice(0, text.length).toLowerCase() === text.toLowerCase()
     )
 }
-
-// Нужно переберать каждый символ и проверять его с text
-// Длина символов должна быть такая же как у text

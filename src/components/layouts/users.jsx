@@ -17,10 +17,6 @@ const Users = () => {
     const pageSize = 4
     const [text, setText] = useState("")
     const [users, setUsers] = useState([])
-    // const foundUser = users.find((user) => user.name === text)
-    // console.log(foundUser)
-    // console.log(users)
-    // foundUser && setUsers(foundUser)
     useEffect(() => {
         api.users.fetchAll().then((data) => {
             setUsers(data)
