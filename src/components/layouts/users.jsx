@@ -17,6 +17,7 @@ const Users = () => {
     const pageSize = 4
     const [text, setText] = useState("")
     const [users, setUsers] = useState([])
+    const [searchedUsers, setSearchedUsers] = useState()
     useEffect(() => {
         api.users.fetchAll().then((data) => {
             setUsers(data)
@@ -61,7 +62,7 @@ const Users = () => {
 
     useEffect(() => {
         const foundUser = searchFilter(users, text)
-        foundUser && setUsers(foundUser)
+        foundUser && foundUser.length !== 0 && setSearchedUsers(foundUser)
     }, [text])
 
     const handleChange = (event) => {
@@ -69,9 +70,13 @@ const Users = () => {
     }
 
     if (users) {
+        const newUsers =
+            typeof searchedUsers !== "undefined" ? searchedUsers : users
         const filteredUsers = selectedProf
-            ? users.filter((user) => user.profession._id === selectedProf._id)
-            : users
+            ? newUsers.filter(
+                  (user) => user.profession._id === selectedProf._id
+              )
+            : newUsers
         const count = filteredUsers.length
         const sortedUsers = _.orderBy(filteredUsers, sortBy.path, sortBy.order)
         const userCrop = paginate(sortedUsers, currentPage, pageSize)
