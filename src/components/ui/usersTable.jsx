@@ -1,17 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
-import BookMark from "./bookmark"
-import QualitiesList from "./qualitiesList"
-import Table from "./table"
-import TableBody from "./tableBody"
-import TableHeader from "./tableHeader"
+import BookMark from "../common/bookmark"
+import Qualities from "./qualities"
+import Table, { TableBody, TableHeader } from "../common/table"
 
 const UserTabel = ({ users, onDelete, onHandleMark, onSort, selectedSort }) => {
     const columns = {
-        name: { path: "name", name: "Имя" },
+        name: {
+            path: "name",
+            name: "Имя"
+        },
         qualities: {
             name: "Качества",
-            component: (user) => <QualitiesList user={user} />
+            component: (user) => <Qualities user={user} />
         },
         professions: { path: "profession.name", name: "Профессия" },
         completedMeetings: {

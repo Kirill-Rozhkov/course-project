@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { useHistory, useParams } from "react-router-dom"
-import api from "../api"
+import { Link, useParams } from "react-router-dom"
+import api from "../../../api"
 import PropTypes from "prop-types"
-import QualitiesList from "./qualitiesList"
+import QualitiesList from "../../ui/qualities/qualitiesList"
 
-const User = () => {
+const UserPage = () => {
     const [user, setUser] = useState()
     const id = useParams()
     const { userId } = id
@@ -13,11 +13,6 @@ const User = () => {
             setUser(data)
         })
     }, [])
-    console.log(user)
-    const history = useHistory()
-    const showAllUsers = () => {
-        history.push("/users")
-    }
     return (
         <>
             {user ? (
@@ -25,11 +20,16 @@ const User = () => {
                     <h1>{user.name}</h1>
                     <h2>Профессия: {user.profession.name}</h2>
                     <>{<QualitiesList user={user} />}</>
-                    <p>{user.completedMeetings}</p>
+                    <p>CompletedMeetings: {user.completedMeetings}</p>
                     <h1>Rate: {user.rate}</h1>
-                    <button onClick={() => showAllUsers()}>
-                        Все пользователи
-                    </button>
+                    <Link
+                        to={{
+                            pathname: `/users/${user._id}/edit`,
+                            state: { user }
+                        }}
+                    >
+                        <button>Изменить</button>
+                    </Link>
                 </div>
             ) : (
                 <h1>Loading...</h1>
@@ -37,8 +37,5 @@ const User = () => {
         </>
     )
 }
-User.propTypes = {
-    users: PropTypes.array
-}
 
-export default User
+export default UserPage

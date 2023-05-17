@@ -18,6 +18,7 @@ module.exports = {
         "eol-last": 0,
         "no-multiple-empty-lines": ["warn", { max: 2 }],
         "no-unused-vars": 0,
-        "multiline-ternary": [0, "always"]
+        "multiline-ternary": [0, "always"],
+        "object-shorthand": "off"
     }
 }
