@@ -14,25 +14,45 @@ const ChangeUser = () => {
     const [qualities, setQualities] = useState([])
     const [professions, setProfessions] = useState({})
     const [errors, setErrors] = useState({})
-    const [qualitiesList, setQualitiesList] = useState([])
-    console.log(user.profession.name)
+
+    const qualitiesArr = []
+    user.qualities.map((qualitie) =>
+        qualitiesArr.push({
+            label: qualitie.name,
+            value: qualitie._id
+        })
+    )
+
     const [data, setData] = useState({
         name: user.name,
         email: user.email,
-        profession: "",
+        profession: user.profession._id,
         sex: user.sex,
-        qualities: ""
+        qualities: qualitiesArr
     })
-
+    // console.log(qualitiesArr)
+    console.log(data.qualities)
     useEffect(() => {
         api.professions.fetchAll().then((data) => setProfessions(data))
         api.qualities.fetchAll().then((data) => setQualities(data))
     }, [])
+
     const handleChange = (target) => {
+        // if (target.name !== "qualities") {
         setData((prevstate) => ({
             ...prevstate,
             [target.name]: target.value
         }))
+        // } else {
+        //     console.log(qualities)
+        //     const selectedProfession = qualities.filter(
+        //         (profession) => profession._id === target.name
+        //     )
+        //     setData((prevstate) => ({
+        //         ...prevstate,
+        //         selectedProfession
+        //     }))
+        // }
     }
     const validatorConfig = {
         name: {

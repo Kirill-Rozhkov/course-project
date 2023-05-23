@@ -24,6 +24,7 @@ const RegisterForm = () => {
         api.qualities.fetchAll().then((data) => setQualities(data))
     }, [])
     const handleChange = (target) => {
+        console.log(data)
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
