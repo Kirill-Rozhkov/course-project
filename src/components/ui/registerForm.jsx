@@ -24,12 +24,15 @@ const RegisterForm = () => {
         api.qualities.fetchAll().then((data) => setQualities(data))
     }, [])
     const handleChange = (target) => {
-        console.log(data)
+        console.log(target)
+        console.log({ [target.name]: target.value })
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
         }))
+        console.log(data)
     }
+
     const validatorConfig = {
         email: {
             isRequired: {
@@ -124,7 +127,7 @@ const RegisterForm = () => {
             <MultiSelectField
                 options={qualities}
                 onChange={handleChange}
-                defaultFalue={data.qualities}
+                defaultValue={data.qualities}
                 name="qualities"
                 label={"Выберите ваши качества"}
             />

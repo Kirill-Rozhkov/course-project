@@ -30,29 +30,17 @@ const ChangeUser = () => {
         sex: user.sex,
         qualities: qualitiesArr
     })
-    // console.log(qualitiesArr)
-    console.log(data.qualities)
+
     useEffect(() => {
         api.professions.fetchAll().then((data) => setProfessions(data))
         api.qualities.fetchAll().then((data) => setQualities(data))
     }, [])
 
     const handleChange = (target) => {
-        // if (target.name !== "qualities") {
         setData((prevstate) => ({
             ...prevstate,
             [target.name]: target.value
         }))
-        // } else {
-        //     console.log(qualities)
-        //     const selectedProfession = qualities.filter(
-        //         (profession) => profession._id === target.name
-        //     )
-        //     setData((prevstate) => ({
-        //         ...prevstate,
-        //         selectedProfession
-        //     }))
-        // }
     }
     const validatorConfig = {
         name: {
@@ -67,11 +55,6 @@ const ChangeUser = () => {
             isEmail: {
                 message: "Email введё не корректно"
             }
-        },
-        profession: {
-            isRequired: {
-                message: "Обязательно выберите вашу профессию"
-            }
         }
     }
     useEffect(() => {
@@ -84,17 +67,37 @@ const ChangeUser = () => {
         return Object.keys(errors).length === 0
     }
 
+    const [isValid, setIsValid] = useState(false)
+    window.setTimeout(() => {
+        setIsValid(Object.keys(errors).length === 0)
+    }, 2500)
     const handleSubmit = (e) => {
         e.preventDefault()
         const isValid = validate()
-        if (isValid) {
-            console.log(data)
-            api.users.update(user._id, data)
+        if (isValid && professions) {
+            const newProfession = Object.values(professions).find(
+                (prof) => prof._id === data.profession
+            )
+            const newQualities = []
+            for (let i = 0; i < data.qualities.length; i++) {
+                const qualitie = Object.values(qualities).filter(
+                    (qualitie) => qualitie._id === data.qualities[i].value
+                )
+                newQualities.push(qualitie[0])
+            }
+
+            const changedData = {
+                ...data,
+                profession: newProfession,
+                qualities: newQualities
+            }
+
+            api.users.update(user._id, changedData)
             history.push(`/users/${user._id}`)
         }
     }
     return (
-        <>
+        <form onSubmit={handleSubmit}>
             <TextField
                 label={"Имя"}
                 name={"name"}
@@ -132,12 +135,17 @@ const ChangeUser = () => {
             <MultiSelectField
                 options={qualities}
                 onChange={handleChange}
-                defaultFalue={data.qualities}
-                name="qualities"
+                defaultValue={data.qualities}
+                name={"qualities"}
                 label={"Выберите ваши качества"}
             />
-            <button onClick={handleSubmit}>Update</button>
-        </>
+            <button
+                disabled={!isValid}
+                className="btn btn-primary w-100 mx-auto"
+            >
+                Update
+            </button>
+        </form>
     )
 }
 

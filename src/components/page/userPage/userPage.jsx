@@ -13,7 +13,6 @@ const UserPage = () => {
             setUser(data)
         })
     }, [])
-    console.log(user)
     return (
         <>
             {user ? (
