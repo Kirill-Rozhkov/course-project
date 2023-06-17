@@ -31,8 +31,22 @@ const ChangeUser = () => {
         qualities: qualitiesArr
     })
 
+    const getProfessionById = (id) => {
+        for (const prof of professions) {
+            if (prof.value === id) {
+                return { _id: prof.value, name: prof.label }
+            }
+        }
+    }
+
     useEffect(() => {
-        api.professions.fetchAll().then((data) => setProfessions(data))
+        api.professions.fetchAll().then((data) => {
+            const professionsList = Object.keys(data).map((professionName) => ({
+                label: data[professionName].name,
+                value: data[professionName]._id
+            }))
+            setProfessions(professionsList)
+        })
         api.qualities.fetchAll().then((data) => setQualities(data))
     }, [])
 
@@ -74,10 +88,7 @@ const ChangeUser = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const isValid = validate()
-        if (isValid && professions) {
-            const newProfession = Object.values(professions).find(
-                (prof) => prof._id === data.profession
-            )
+        if (isValid) {
             const newQualities = []
             for (let i = 0; i < data.qualities.length; i++) {
                 const qualitie = Object.values(qualities).filter(
@@ -88,10 +99,10 @@ const ChangeUser = () => {
 
             const changedData = {
                 ...data,
-                profession: newProfession,
+                profession: getProfessionById(data.profession),
                 qualities: newQualities
             }
-
+            console.log(changedData)
             api.users.update(user._id, changedData)
             history.push(`/users/${user._id}`)
         }
