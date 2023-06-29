@@ -9,8 +9,7 @@ const Comment = ({ comment, handleDelete }) => {
     const timeDifference = (Date.now() - comment.created_at) / 1000
 
     const showTime = () => {
-        const date = new Date(timeDifference * 1000)
-        console.log(date)
+        const date = new Date(Number(comment.created_at))
         const monthNames = [
             "January",
             "February",

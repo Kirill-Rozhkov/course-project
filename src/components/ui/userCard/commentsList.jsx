@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
+import _ from "lodash"
 import PropTypes from "prop-types"
 import API from "../../../api"
 import Comment from "./comment"
 
 const CommentsList = ({ handleDelete, comments }) => {
-    const sortedComments = comments.sort()
+    const sortedComments = _.orderBy(comments, ["created_at"], ["desc", "asc"])
     console.log(sortedComments)
     return (
         <div className="card mb-3">
